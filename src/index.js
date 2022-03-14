@@ -1,7 +1,6 @@
 import TokenWidget from '@plone/volto/components/manage/Widgets/TokenWidget';
 //import chartIcon from '@plone/volto/icons/world.svg';
 import TopicsView from '@eeacms/volto-energy-theme/components/theme/View/TopicsView';
-import { installBlocks } from '@eeacms/volto-plotlycharts/config';
 import TopicsTabView from '@eeacms/volto-energy-theme/components/theme/View/TopicsTabView';
 import TopicsTabParentView from '@eeacms/volto-energy-theme/components/theme/View/TopicsTabParentView';
 import ListingBlockTemplate from '@eeacms/volto-energy-theme/components/manage/Blocks/Listing/ListTemplate';
@@ -41,8 +40,6 @@ import '@plone/volto/config';
 
 export default function applyConfig(config) {
   // Add here your project's configuration here by modifying `config` accordingly
-
-  config = [installBlocks].reduce((acc, apply) => apply(acc), config);
 
   const allowed_cors_destinations = [
     ...(config.settings.allowed_cors_destinations || []),
