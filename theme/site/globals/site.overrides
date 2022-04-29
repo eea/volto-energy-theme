@@ -551,6 +551,11 @@ body:not(.has-toolbar-collapsed):not(.anonymous) {
   }
 }
 
+ // to override volto-blocks-style
+body:not(.view-editview):not(.document_wide_view):not(.is-anonymous) main {
+    overflow: inherit;
+}
+
 .personal-tools.pastanaga-menu {
   position: relative;
 }
