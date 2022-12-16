@@ -27,7 +27,7 @@ const messages = defineMessages({
 });
 
 const RouterLink = ({ item }) => {
-  const url = (item.url || item['@id'])
+  const url = (item?.url || item?.['@id']) && (item?.url || item?.['@id'])
     .replace(config.settings.apiPath, '')
     .replace(config.settings.internalApiPath, '');
   return (
