@@ -44,8 +44,6 @@ import {
 import clearSVG from '@plone/volto/icons/clear.svg';
 import MultilingualRedirector from '@plone/volto/components/theme/MultilingualRedirector/MultilingualRedirector';
 
-import * as Sentry from '@sentry/browser';
-
 import PageHeader from '@eeacms/volto-energy-theme/components/theme/Header/PageHeader';
 // import PageHeaderBg from '~/components/theme/Header/PageHeaderBg';
 
@@ -79,13 +77,9 @@ class App extends Component {
    * @param {string} info The info
    * @returns {undefined}
    */
-  componentDidCatch(error, info) {
+   componentDidCatch(error, info) {
     this.setState({ hasError: true, error, errorInfo: info });
-    if (__CLIENT__) {
-      if (window?.env?.RAZZLE_SENTRY_DSN || __SENTRY__?.SENTRY_DSN) {
-        Sentry.captureException(error);
-      }
-    }
+    config.settings.errorHandlers.forEach((handler) => handler(error));
   }
 
   /**
