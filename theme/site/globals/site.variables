@@ -99,7 +99,7 @@
 @secondaryColor      : @black;
 
 @lightPrimaryColor   : @lightBlue;
-@lightSecondaryColor : @lightBlack;
+@lightSecondaryColor : #545454;
 
 
 /*--------------

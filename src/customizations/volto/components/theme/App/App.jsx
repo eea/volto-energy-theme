@@ -77,7 +77,7 @@ class App extends Component {
    * @param {string} info The info
    * @returns {undefined}
    */
-   componentDidCatch(error, info) {
+  componentDidCatch(error, info) {
     this.setState({ hasError: true, error, errorInfo: info });
     config.settings.errorHandlers.forEach((handler) => handler(error));
   }
