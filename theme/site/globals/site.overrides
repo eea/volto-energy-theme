@@ -518,12 +518,15 @@ body.homepage {
     background-color: rgba(31, 105, 182, 0.85);
   }
 
+ /*
   .background-img {
     background-image: url('/images/background/home.jpg');
   }
-
+*/
   .background-countries {
+    /*
     background-image: url('/images/background/countries.png');
+    */
     background-position-x: 50%;
     background-repeat: no-repeat;
     background-size: contain !important;

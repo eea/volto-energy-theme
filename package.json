@@ -1,6 +1,6 @@
 {
   "name": "@eeacms/volto-energy-theme",
-  "version": "1.0.31",
+  "version": "1.0.32",
   "description": "@eeacms/volto-energy-theme: Volto add-on",
   "main": "src/index.js",
   "author": "European Environment Agency: IDM2 A-Team",
@@ -25,12 +25,14 @@
     "@eeacms/volto-plotlycharts": "*",
     "@n8tb1t/use-scroll-position": "^2.0.3",
     "mgr-pdf-viewer-react": "^1.0.3",
-    "react-scrollspy": "^3.4.3",
-    "volto-addons": "github:eea/volto-addons"
+    "react-scrollspy": "^3.4.3"
   },
   "devDependencies": {
     "@cypress/code-coverage": "^3.9.5",
-    "babel-plugin-transform-class-properties": "^6.24.1"
+    "@plone/scripts": "*",
+    "cypress-fail-fast": "^5.0.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "md5": "^2.3.0"
   },
   "scripts": {
     "release": "release-it",
