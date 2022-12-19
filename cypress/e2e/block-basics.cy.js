@@ -1,5 +1,7 @@
 import { slateBeforeEach, slateAfterEach } from '../support/e2e';
 
+import 'cypress-fail-fast';
+
 describe('Blocks Tests', () => {
   beforeEach(slateBeforeEach);
   afterEach(slateAfterEach);
