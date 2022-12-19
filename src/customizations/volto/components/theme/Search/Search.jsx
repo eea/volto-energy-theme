@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { Helmet } from '@plone/volto/helpers';
 import { Link } from 'react-router-dom';
+/* eslint-disable-next-line */
 import { asyncConnect } from 'redux-connect';
 import { Portal } from 'react-portal';
 import { Container, Breadcrumb, Item, Input } from 'semantic-ui-react';
