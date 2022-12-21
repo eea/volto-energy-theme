@@ -8,6 +8,16 @@ import MetaFieldWidget from '@eeacms/volto-energy-theme/components/manage/Widget
 import GridListingBlockTemplate from '@eeacms/volto-energy-theme/components/manage/Blocks/Listing/GridTemplate';
 import CollectionView from '@eeacms/volto-energy-theme/components/theme/View/CollectionView';
 import reducers from '@eeacms/volto-energy-theme/reducers';
+import linkSVG from '@plone/volto/icons/link.svg';
+import { makeInlineElementPlugin } from '@plone/volto-slate/elementEditor';
+import { LINK } from '@plone/volto-slate/constants';
+import { LinkElement } from '@plone/volto-slate/editor/plugins/AdvancedLink/render';
+import { withLink } from '@plone/volto-slate/editor/plugins/AdvancedLink/extensions';
+import { linkDeserializer } from '@plone/volto-slate/editor/plugins/AdvancedLink/deserialize';
+import LinkEditSchema from '@plone/volto-slate/editor/plugins/AdvancedLink/schema';
+
+import { defineMessages } from 'react-intl'; // , defineMessages
+
 // import FolderListingBlockView from 'volto-addons/FolderListing/BlockView';
 // import FolderListingBlockEdit from 'volto-addons/FolderListing/BlockEdit';
 
@@ -37,6 +47,17 @@ import reducers from '@eeacms/volto-energy-theme/reducers';
 // import * as remoteAddonReducers from 'volto-addons/reducers';
 
 import '@plone/volto/config';
+
+const messages = defineMessages({
+  edit: {
+    id: 'Edit link',
+    defaultMessage: 'Edit link',
+  },
+  delete: {
+    id: 'Remove link',
+    defaultMessage: 'Remove link',
+  },
+});
 
 export default function applyConfig(config) {
   // Add here your project's configuration here by modifying `config` accordingly
@@ -170,5 +191,33 @@ export default function applyConfig(config) {
     ...config.addonReducers,
     ...reducers,
   };
+
+  //advancedlink is currently not working properly/not recognized in fise, so we add it to config manually
+  const { slate } = config.settings;
+
+  slate.toolbarButtons = [...(slate.toolbarButtons || []), LINK];
+  slate.expandedToolbarButtons = [
+    ...(slate.expandedToolbarButtons || []),
+    LINK,
+  ];
+
+  slate.htmlTagsToSlate.A = linkDeserializer;
+
+  const opts = {
+    title: 'Link',
+    pluginId: LINK,
+    elementType: LINK,
+    element: LinkElement,
+    isInlineElement: true,
+    editSchema: LinkEditSchema,
+    extensions: [withLink],
+    hasValue: (formData) => !!formData.link,
+    toolbarButtonIcon: linkSVG,
+    messages,
+  };
+
+  const [installLinkEditor] = makeInlineElementPlugin(opts);
+  config = installLinkEditor(config);
+
   return config;
 }
