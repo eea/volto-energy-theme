@@ -18,7 +18,6 @@ import LinkEditSchema from '@plone/volto-slate/editor/plugins/AdvancedLink/schem
 
 import { defineMessages } from 'react-intl'; // , defineMessages
 
-
 // import FolderListingBlockView from 'volto-addons/FolderListing/BlockView';
 // import FolderListingBlockEdit from 'volto-addons/FolderListing/BlockEdit';
 
@@ -59,7 +58,6 @@ const messages = defineMessages({
     defaultMessage: 'Remove link',
   },
 });
-
 
 export default function applyConfig(config) {
   // Add here your project's configuration here by modifying `config` accordingly
@@ -194,32 +192,32 @@ export default function applyConfig(config) {
     ...reducers,
   };
 
- //advancedlink is currently not working properly/not recognized in fise, so we add it to config manually
- const { slate } = config.settings;
+  //advancedlink is currently not working properly/not recognized in fise, so we add it to config manually
+  const { slate } = config.settings;
 
- slate.toolbarButtons = [...(slate.toolbarButtons || []), LINK];
- slate.expandedToolbarButtons = [
-   ...(slate.expandedToolbarButtons || []),
-   LINK,
- ];
+  slate.toolbarButtons = [...(slate.toolbarButtons || []), LINK];
+  slate.expandedToolbarButtons = [
+    ...(slate.expandedToolbarButtons || []),
+    LINK,
+  ];
 
- slate.htmlTagsToSlate.A = linkDeserializer;
+  slate.htmlTagsToSlate.A = linkDeserializer;
 
- const opts = {
-   title: 'Link',
-   pluginId: LINK,
-   elementType: LINK,
-   element: LinkElement,
-   isInlineElement: true,
-   editSchema: LinkEditSchema,
-   extensions: [withLink],
-   hasValue: (formData) => !!formData.link,
-   toolbarButtonIcon: linkSVG,
-   messages,
- };
+  const opts = {
+    title: 'Link',
+    pluginId: LINK,
+    elementType: LINK,
+    element: LinkElement,
+    isInlineElement: true,
+    editSchema: LinkEditSchema,
+    extensions: [withLink],
+    hasValue: (formData) => !!formData.link,
+    toolbarButtonIcon: linkSVG,
+    messages,
+  };
 
- const [installLinkEditor] = makeInlineElementPlugin(opts);
- config = installLinkEditor(config);
+  const [installLinkEditor] = makeInlineElementPlugin(opts);
+  config = installLinkEditor(config);
 
   return config;
 }
