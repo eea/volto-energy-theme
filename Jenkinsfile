@@ -6,7 +6,7 @@ pipeline {
         NAMESPACE = "@eeacms"
         SONARQUBE_TAGS = "volto.eea.europa.eu,climate-energy.eea.europa.eu"
         DEPENDENCIES = "@eeacms/volto-plotlycharts"
-        VOLTO = ""
+        VOLTO = "16"
     }
 
   stages {
