@@ -348,43 +348,46 @@ class PageNavigation extends Component {
                                           </Link>
                                         </li>
                                       ))
-                                  : item.items.map((
-                                      country, // only for /countries/*
-                                    ) => (
-                                      <li
-                                        className={
-                                          (flattenToAppURL(
-                                            this.props.pathname,
-                                          ).includes(
-                                            flattenToAppURL(
-                                              country['@id'] || country.url,
-                                            ),
-                                          ) &&
-                                            'active') ||
-                                          ''
-                                        }
-                                        key={`li-${
-                                          country['@id'] || country.url
-                                        }`}
-                                      >
-                                        <Link
-                                          key={country['@id'] || country.url}
-                                          to={
-                                            country.items &&
-                                            country.items.length
-                                              ? flattenToAppURL(
-                                                  country.items[0]['@id'] ||
-                                                    country.items[0].url,
-                                                )
-                                              : flattenToAppURL(
-                                                  country['@id'] || country.url,
-                                                )
+                                  : item.items.map(
+                                      (
+                                        country, // only for /countries/*
+                                      ) => (
+                                        <li
+                                          className={
+                                            (flattenToAppURL(
+                                              this.props.pathname,
+                                            ).includes(
+                                              flattenToAppURL(
+                                                country['@id'] || country.url,
+                                              ),
+                                            ) &&
+                                              'active') ||
+                                            ''
                                           }
+                                          key={`li-${
+                                            country['@id'] || country.url
+                                          }`}
                                         >
-                                          {country.title}
-                                        </Link>
-                                      </li>
-                                    ))}
+                                          <Link
+                                            key={country['@id'] || country.url}
+                                            to={
+                                              country.items &&
+                                              country.items.length
+                                                ? flattenToAppURL(
+                                                    country.items[0]['@id'] ||
+                                                      country.items[0].url,
+                                                  )
+                                                : flattenToAppURL(
+                                                    country['@id'] ||
+                                                      country.url,
+                                                  )
+                                            }
+                                          >
+                                            {country.title}
+                                          </Link>
+                                        </li>
+                                      ),
+                                    )}
                               </ul>
                             ) : (
                               ''

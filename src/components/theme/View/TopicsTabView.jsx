@@ -5,7 +5,6 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Helmet } from '@plone/volto/helpers';
 import { compose } from 'redux';
 import { defineMessages, injectIntl } from 'react-intl';
 
@@ -19,8 +18,9 @@ import {
   getBlocksLayoutFieldname,
   hasBlocksData,
   getBaseUrl,
+  Helmet,
+  flattenToAppURL,
 } from '@plone/volto/helpers';
-import { flattenToAppURL } from '@plone/volto/helpers';
 
 const messages = defineMessages({
   unknownBlock: {
@@ -32,7 +32,6 @@ const messages = defineMessages({
 class DefaultView extends Component {
   constructor(props) {
     super(props);
-    // this.renderTabs = this.renderTabs.bind(this);
     this.state = {
       tabs: null,
     };
@@ -52,24 +51,6 @@ class DefaultView extends Component {
     }).isRequired,
     localNavigation: PropTypes.any,
   };
-
-  // componentWillReceiveProps(nextProps) {
-  //   console.log('herere', nextProps.parent, this.props.parent);
-  //   if (nextProps.parent && nextProps.parent.id !== this.props.parent?.id) {
-
-  //     const pathArr = nextProps.location.pathname.split('/');
-  //     pathArr.length = 4;
-  //     const path = pathArr.join('/');
-  //     const tabsItems = nextProps.parent.items.map(i => {
-  //       return {
-  //         url: `${path}/${i.id}`,
-  //         title: i.title,
-  //         '@type': i['@type'],
-  //       };
-  //     });
-  //     this.props.setFolderTabs(tabsItems);
-  //   }
-  // }
 
   validateTitle = (content) => {
     const title = content.name || content.title;
@@ -92,31 +73,6 @@ class DefaultView extends Component {
     const blocksFieldname = getBlocksFieldname(content);
     const blocksLayoutFieldname = getBlocksLayoutFieldname(content);
     const tabs = this.computeFolderTabs(content['@components'].siblings);
-
-    // const currentUrl = this.props.content?.['@id'];
-    // const shouldRenderRoutes =
-    //   typeof currentUrl !== 'undefined' &&
-    //   samePath(currentUrl, this.props.pathname)
-    //     ? true
-    //     : false;
-    //
-    // if (shouldRenderRoutes === false)
-    //   return (
-    //     <div className="lds-default">
-    //       <div />
-    //       <div />
-    //       <div />
-    //       <div />
-    //       <div />
-    //       <div />
-    //       <div />
-    //       <div />
-    //       <div />
-    //       <div />
-    //       <div />
-    //       <div />
-    //     </div>
-    //   );
 
     return (
       hasBlocksData(content) && (

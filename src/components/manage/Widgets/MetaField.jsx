@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import loadable from '@loadable/component';
 
 import { FormFieldWrapper } from '@plone/volto/components';
-import withQueryString from '@eeacms/volto-energy-theme/helpers/withQueryString';
+import { withQueryString } from '@plone/volto/components/manage/Blocks/Search/hocs';
 
 import {
   Option,
